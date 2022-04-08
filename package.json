@@ -10,7 +10,10 @@
     "e2e": "ng e2e",
     "heroku-postbuild": "ng build — prod"
   },
-  "engines": { "node": "14.17.0", "npm": "6.14.13" },
+  "engines": {
+    "node": "14.17.0",
+    "npm": "6.14.13"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^10.0.14",
@@ -49,9 +52,9 @@
     "@angular-devkit/build-angular": "~0.1000.0",
     "@angular/cli": "~10.0.0",
     "@angular/compiler-cli": "~10.0.0",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0-next.1",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
@@ -60,6 +63,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~3.3.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "nodemon": "^2.0.15",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
