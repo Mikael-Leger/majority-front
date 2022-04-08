@@ -50,6 +50,8 @@ export class RankingComponent implements OnInit {
   }
 
   getUsers(type: string): void {
+    console.log("getUsers");
+
     let username = this.route.snapshot.paramMap.get('username');
     if (username == null) {
       username = '';

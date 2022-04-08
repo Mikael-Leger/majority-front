@@ -224,7 +224,7 @@ export class GameComponent implements OnInit {
   }
 
   nextQuestion(): void {
-    if (this.game.nb_question >= 1) {
+    if (this.game.nb_question >= 10) {
       this.gameEndedFor = 'Le quiz touche à sa fin !';
       this.endGame();
       return;

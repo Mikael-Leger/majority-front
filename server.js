@@ -8,7 +8,9 @@ const port = process.env.PORT || 3001;
 
 app.use(express.static(__dirname + '/dist/Angular10Crud/'));
 
-app.get('/*', (req, res) => res.sendFile(path.join(__dirname)));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/dist/Angular10Crud/index.html'))
+});
 
 const server = http.createServer(app);
 
