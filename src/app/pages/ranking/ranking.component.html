@@ -1,0 +1,78 @@
+<mat-grid-list cols="1">
+  <mat-grid-tile colspan="1" rowspan="3" class="mat-card-panel three-rows-panel">
+    <mat-card>
+      <mat-card-actions align="center">
+        <div class="buttons-spacer">
+          <span class="first-spacer-2"></span>
+          <button mat-button mat-raised-button
+          color="primary" (click)="backToTop()">Top players</button>
+          <span class="second-spacer-2"></span>
+          <button mat-button mat-raised-button
+          color="primary" (click)="backToPosition()">{{ username }} position</button>
+          <span class="third-spacer-2"></span>
+        </div>
+      </mat-card-actions>
+      <mat-card-content>
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="rank">
+            <th mat-header-cell *matHeaderCellDef> Rank </th>
+            <td mat-cell *matCellDef="let row; let idx = index;">
+              <span>
+                <span class="flag-icon flag-icon-{{row.flag | lowercase}} flag-icon-squared"></span> {{idx + 1 + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize)}}
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let row" class="username">
+              <span>{{row.username}}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef> Level</th>
+            <td mat-cell *matCellDef="let row" class="level">
+              <app-spinner [user]="row" size="medium"></app-spinner>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="points">
+            <th mat-header-cell *matHeaderCellDef> Points </th>
+            <td mat-cell *matCellDef="let row">
+              <span>{{row.points}}</span>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns; let idx = index" class="row-user"
+          [ngClass]="{'first': (idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize)) === 0,
+            'second': (idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize)) === 1,
+            'third': (idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize)) === 2,
+            'selected': (idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize)) === rank}"
+          routerLink="/profile/{{row.username}}"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data.</td>
+          </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10]" aria-label="Select page of users"></mat-paginator>
+      </mat-card-content>
+      <mat-card-actions align="center">
+        <div class="buttons-spacer">
+          <span class="first-spacer-2"></span>
+          <button mat-button
+          [class.mat-stroked-button]="(regionButton) ? '' : 'true'"
+          [class.mat-raised-button]="(!regionButton) ? '' : 'true'"
+          color="primary" (click)="getUsers('region')">Region Ranking</button>
+          <span class="second-spacer-2"></span>
+          <button mat-button
+          [class.mat-stroked-button]="(globalButton) ? '' : 'true'"
+          [class.mat-raised-button]="(!globalButton) ? '' : 'true'"
+          color="primary" (click)="getUsers('global')">Global Ranking</button>
+          <span class="third-spacer-2"></span>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

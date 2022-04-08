@@ -1,0 +1,40 @@
+<mat-grid-list cols="3">
+  <mat-grid-tile colspan="2" rowspan="1" class="mat-card-panel first-row-panel">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Welcome to Majority!
+        </mat-card-title>
+        <mat-card-subtitle>
+          A game provided by Mikaël Léger
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="indent">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div *ngIf="authenticated">
+          <p class="indent">Content if authenticated</p>
+        </div>
+        <div *ngIf="!authenticated">
+          <p class="indent">Not registered? Create an account now <a routerLink="/register">here</a>!</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="2" class="mat-card-panel two-rows-panel">
+    <app-ranking-top></app-ranking-top>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="1" class="mat-card-panel second-row-panel">
+    <mat-card class="mat-card-shadow">
+      <mat-card-header>
+        <mat-card-title>How does the game work?</mat-card-title>
+        <mat-card-subtitle>Selection of screenshots</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="indent">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        <img>
+        <p class="indent">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        <img>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

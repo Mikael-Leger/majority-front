@@ -1,0 +1,101 @@
+<mat-grid-list cols="1">
+  <mat-grid-tile colspan="1" rowspan="2" class="mat-card-panel two-rows-panel">
+    <mat-card *ngIf="game">
+      <mat-card-header class="question-header">
+        <mat-card-title>
+          <div *ngIf="game.status == 'lobby'">
+            Current Lobby:
+            <span class="players-in-lobby">{{ players.length }}/15 players</span>
+          </div>
+          <div *ngIf="game.status == 'started' && question">
+            <div class="question-header">
+              <span class="question-title">Question n°{{ game.nb_question }} : </span>
+              {{ question.question_name }}
+              <span class="log-spacer"></span>
+              <span *ngIf="game.status == 'started'" class="time-left">{{ (resultsBool) ? '[Results] ' : '[Question]' }} {{timeLeft}} seconds left...</span>
+            </div>
+          </div>
+          <div *ngIf="game.status == 'ended'">
+            <div class="game-ended">
+              <div class="for-reason">{{ gameEndedFor }}</div>
+              <div class="winners-list">{{ (winners.length > 1) ? 'Winners' : 'Winner' }}:
+                <span *ngFor="let winner of winners; let idx = index">
+                  {{ (idx != winners.length - 1) ? winner.username + ',' : winner.username }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-actions *ngIf="game.status == 'started'" align="center">
+        <div class="buttons-spacer">
+          <span class="first-spacer-3"></span>
+          <button (click)="vote('A')" mat-button class="answer answer-red"
+            [ngClass]="{'selected': ((!resultsBool && voteAnswer == 'A') || (resultsBool && answers.includes('A'))),
+            'answer-disabled': resultsBool || player.lifes == 0}"
+            [disabled]="resultsBool || player.lifes == 0">
+            [A] {{ (question) ? question.question_answer1 : '' }}
+          </button>
+          <span class="second-spacer-3"></span>
+          <button (click)="vote('B')" mat-button class="answer answer-green"
+            [ngClass]="{'selected': ((!resultsBool && voteAnswer == 'B') || (resultsBool && answers.includes('B'))),
+            'answer-disabled': resultsBool || player.lifes == 0}"
+            [disabled]="resultsBool || player.lifes == 0">
+            [B] {{ (question) ? question.question_answer2 : '' }}
+          </button>
+          <span class="third-spacer-3"></span>
+          <button (click)="vote('C')" mat-button class="answer answer-blue"
+            [ngClass]="{'selected': ((!resultsBool && voteAnswer == 'C') || (resultsBool && answers.includes('C'))),
+            'answer-disabled': resultsBool || player.lifes == 0}"
+            [disabled]="resultsBool || player.lifes == 0">
+            [C] {{ (question) ? question.question_answer3 : '' }}
+          </button>
+          <span class="fourth-spacer-3"></span>
+        </div>
+      </mat-card-actions>
+      <button *ngIf="game.status == 'lobby'" mat-raised-button color="primary" (click)="startGame()">Start</button>
+      <hr>
+      <mat-card-content>
+        <mat-grid-list cols="5" rowHeight="3:2" class="mat-grid-game">
+          <mat-grid-tile *ngFor="let player of players">
+            <mat-card class="card mat-card-game" [ngClass]="{
+            'card-dead': player.lifes === 0,
+            'card-winner': player.lifes > 0 && game.status === 'ended',
+            'card-red' : player.lifes > 0 && resultsBool && player.vote === 'A',
+            'card-green' : player.lifes > 0 && resultsBool && player.vote === 'B',
+            'card-blue' : player.lifes > 0 && resultsBool && player.vote === 'C' }">
+            <mat-card-title class="card-title">
+              <img class="player-icon" src="https://material.angular.io/assets/img/examples/shiba1.jpg"/>
+              <div class="username-and-points">
+                {{ player.username }}
+                <span class="player-points">{{ player.points }} points</span>
+              </div>
+              <mat-icon class="mat-icon-points" *ngIf="game.status == 'ended' && player.lifes > 0" matBadge="{{ player.lifes * 5 }}" matBadgeColor="warn">control_point</mat-icon>
+            </mat-card-title>
+            <mat-card-content class="card-content">
+              <div class="level-lifes row">
+                <div class="level col-4">Level {{ player.level }}</div>
+                <div class="lifes col-3 offset-5">
+                  <span *ngIf="player.lifes > 0">{{ player.lifes }}<mat-icon [inline]="true" [ngStyle]="{'color': '#94101d'}">favorite</mat-icon></span>
+                  <span *ngIf="player.lifes == 0">dead</span>
+                </div>
+                <div class="heart-fade-away">
+                  <div *ngIf="player.losingLife" [@simpleFadeAnimation]="'in'">
+                    <span>-1</span><span class="icon-fade-away"><mat-icon [inline]="true" [ngStyle]="{'color': '#94101d'}">favorite</mat-icon></span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <span>description</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+      <mat-card-actions align="center">
+        <button mat-raised-button color="primary" *ngIf="game.status == 'ended'" (click)="backToMenu()">Go back to Menu</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,142 @@
+.player-icon {
+  height: 42px;
+  width: 42px;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.question-title {
+  font-size: 1.2em;
+  text-decoration: underline;
+  flex: 0.3 auto;
+}
+
+.players-in-lobby {
+  font-size: 0.8em;
+}
+
+/* Cards */
+.card-title {
+  text-transform: capitalize;
+  font-size: 1.2em;
+  padding-bottom: 15px;
+  border-bottom: 1px solid grey;
+}
+
+.card-title img {
+  margin-right: 10px;
+}
+
+.card-content {
+  width: 200px;
+}
+
+.card-content .level-lifes {
+  font-size: 0.8em;
+}
+
+.answer {
+  border: solid 1px;
+}
+
+.card-red .card-title,
+.card-red,
+.answer-red {
+  background-color: #bd5e7b;
+  border-color: #a6243e;
+}
+
+.card-green .card-title,
+.card-green,
+.answer-green {
+  background-color: #3a9953;
+  border-color: #126e2c;
+}
+
+.card-blue .card-title,
+.card-blue,
+.answer-blue {
+  background-color: #5f69c2;
+  border-color: #2f22a3;
+}
+
+.answer:not(.selected) {
+  filter: opacity(80%);
+}
+
+.answer.selected {
+  filter: brightness(85%);
+}
+
+.card-winner .card-title,
+.card-winner {
+  background-color: #dac04f;
+  border-color: #ad7e17;
+  border-width: 5px;
+}
+
+.card-dead {
+  background-color: grey;
+}
+
+.lifes {
+  font-weight: bold;
+}
+
+.lifes mat-icon {
+  font-size: 1.2em;
+}
+
+.answer-disabled {
+  cursor: not-allowed;
+}
+
+.username-and-points {
+  display: inline-grid;
+}
+
+.player-points {
+  font-size: 0.7em;
+}
+
+.question-header {
+  align-items: inherit;
+  display: flex;
+}
+
+.log-spacer {
+  flex: 8 auto;
+}
+
+.time-left {
+  font-size: 0.6em;
+  color: grey;
+}
+
+.mat-icon-points {
+  left: 15px;
+}
+
+.game-ended {
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.game-ended .for-reason {
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.winners-list {
+  font-size: 0.8em;
+}
+
+/* Animation */
+.heart-fade-away {
+  position: absolute;
+  margin-left: 78%;
+}
+
+.icon-fade-away {
+  font-size: 1.2em;
+}

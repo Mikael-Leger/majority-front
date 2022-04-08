@@ -1,0 +1,39 @@
+<mat-card class="card-ranking-top mat-card-shadow">
+  <mat-card-header>
+    <mat-card-title>Top Players</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table class="table table-striped mat-ranking-top">
+      <thead>
+        <tr>
+          <th class="ranking-top" scope="col">Rank</th>
+          <!-- <th scope="col">Country</th> -->
+          <th class="ranking-top" scope="col">Username</th>
+          <th class="ranking-top" scope="col">Level</th>
+          <th class="ranking-top" scope="col">Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; index as i" class="row-user"
+        [ngClass]="{'first': i === 0, 'second': i === 1, 'third': i === 2}"
+        routerLink="/profile/{{user.username}}">
+          <th class="ranking-top" scope="row"><span class="flag-icon flag-icon-{{user.flag | lowercase}} flag-icon-squared"></span> {{ i + 1 }}</th>
+          <td>{{ user.username }}</td>
+          <td>{{ user.level }}</td>
+          <td>{{ user.points }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+  <mat-card-actions align="center">
+    <button mat-button
+    [class.mat-stroked-button]="(globalButton) ? '' : 'true'"
+    [class.mat-raised-button]="(!globalButton) ? '' : 'true'"
+    color="primary" (click)="getFirstTenUsers('global')">Global Ranking</button>
+    <button mat-button
+    [class.mat-stroked-button]="(regionButton) ? '' : 'true'"
+    [class.mat-raised-button]="(!regionButton) ? '' : 'true'"
+    color="primary" (click)="getFirstTenUsers('region')">Region Ranking</button>
+  </mat-card-actions>
+</mat-card>
+

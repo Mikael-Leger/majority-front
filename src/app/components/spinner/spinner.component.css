@@ -1,0 +1,46 @@
+.spinner {
+  position: relative;
+}
+
+.spinner-level {
+  width: 100%;
+  text-align: center;
+  left: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.spinner-large {
+  width: 50px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.spinner-large .spinner-level {
+  top: 0.75em;
+}
+
+.spinner-medium {
+  width: 30px;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.spinner-medium .spinner-level {
+  top: 0.45em;
+}
+
+.spinner-small {
+  width: 15px;
+  font-size: 0.8em;
+}
+
+.spinner-small .spinner-level {
+  top: 0.75em;
+}
+
+mat-progress-spinner {
+  border-radius: 50%;
+  background-color: #8f65d6;
+  z-index: 0;
+}

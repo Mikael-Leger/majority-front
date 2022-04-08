@@ -1,0 +1,45 @@
+<mat-grid-list cols="3">
+  <mat-grid-tile colspan="2" rowspan="1" class="mat-card-panel first-row-panel">
+    <mat-card *ngIf="user" class="profile-card">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <app-spinner [user]="user" size="large"></app-spinner>
+        </div>
+        <!-- <div mat-card-avatar class="profile-header-image"></div> -->
+        <mat-card-title>
+          <span class="username">{{ user.username }} </span>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <span class="points">{{user.points}} points</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="description">Description :</div>
+        <p *ngIf="!edit" class="indent">{{ user.description }}</p>
+        <input *ngIf="edit"
+          class="form-control"
+          id="description"
+          name="description"
+          [value]="user.description"
+          [formControl]="form.get('description')"
+        />
+        <div>Membre depuis le : {{ showLocalDate(user.createdAt) }}</div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <span *ngIf="userProfile">
+          <button *ngIf="!edit" mat-button (click)="editProfile()">EDIT</button>
+          <button *ngIf="edit" mat-button (click)="saveProfile()">SAVE</button>
+        </span>
+        <span *ngIf="!userProfile">
+          <button *ngIf="userInFriendsList" mat-button (click)="removeFriend()">REMOVE FRIEND</button>
+          <button *ngIf="!userInFriendsList" mat-button (click)="addFriend()">ADD FRIEND</button>
+        </span>
+        <button mat-button (click)="goToRank()">RANK</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="2" class="mat-card-panel two-rows-panel">
+    <app-ranking-top class="ranking-top"></app-ranking-top>
+  </mat-grid-tile>
+</mat-grid-list>
+

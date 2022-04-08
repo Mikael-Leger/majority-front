@@ -1,0 +1,169 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* TESTS */
+/* mat-grid-tile {
+  background-color: lightblue;
+  border: 1px solid black;
+} */
+/* END TESTS */
+
+mat-card:not(.mat-card-game), .mat-ranking, .mat-questions {
+  box-shadow: 15px 15px 15px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%) !important;
+}
+
+mat-grid-tile.mat-card-panel > * > * {
+  width: 100%;
+  margin: auto 2em;
+}
+
+mat-grid-tile.mat-card-panel:not(.two-rows-panel),
+mat-grid-tile.mat-card-panel:not(.three-rows-panel) {
+  padding-top: 28% !important;
+}
+
+mat-grid-tile.mat-card-panel.two-rows-panel {
+  padding-top: 56% !important;
+}
+
+mat-grid-tile.mat-card-panel.three-rows-panel {
+  padding-top: 62% !important;
+}
+
+mat-grid-tile.mat-card-panel.second-row-panel {
+  margin-top: 28% !important;
+}
+
+
+mat-form-field {
+  display: block;
+  width: 100%;
+}
+
+th:not(th.ranking-top) {
+  color: #ffffff !important;
+  background-color: #673ab7;
+  font-size: 1.2em;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+mat-card-header.question-header > .mat-card-header-text {
+  width: 100%;
+}
+
+mat-grid-list:not(.mat-grid-game) {
+  padding-bottom: 0px !important;
+}
+
+mat-card.small-card {
+  width: 40%;
+}
+
+.mat-card-panel {
+  padding-top: 0px !important;
+}
+
+.indent {
+  text-indent: 50px;
+}
+
+.points {
+  font-size: 0.8em;
+}
+
+.experience {
+  font-size: 0.8em;
+}
+
+.card, .answer {
+  border-width: 2px;
+  border-style: solid;
+}
+
+.answer-red {
+  background-color: #db9fb1;
+  border-color: #bd5e7b;
+}
+
+.answer-green {
+  background-color: #80cc94;
+  border-color: #3a9953;
+}
+
+.answer-blue {
+  background-color: #9098da;
+  border-color: #5f69c2;
+}
+
+.buttons-spacer {
+  display: flex;
+}
+
+.first-spacer-2 {
+  flex: 3 auto;
+}
+
+.second-spacer-2 {
+  flex: 1 auto;
+}
+
+.third-spacer-2 {
+  flex: 3 auto;
+}
+
+.first-spacer-3 {
+  flex: 3 auto;
+}
+
+.second-spacer-3 {
+  flex: 1 auto;
+}
+
+.third-spacer-3 {
+  flex: 1 auto;
+}
+
+.fourth-spacer-3 {
+  flex: 3 auto;
+}
+
+.first-spacer-4 {
+  flex: 0 auto;
+}
+
+.second-spacer-4 {
+  flex: 2 auto;
+}
+
+.third-spacer-4 {
+  flex: 1 auto;
+}
+
+.fourth-spacer-4 {
+  flex: 4 auto;
+}
+
+.mat-icon-friends-notifications.mat-badge-small.mat-badge-above .mat-badge-content {
+  top: 0.9em;
+  left: 1.2em;
+}
+
+.mat-icon-notifications.mat-badge-small.mat-badge-above .mat-badge-content {
+  top: 0.2em;
+  right: -2.2em;
+}
+
+.mat-list-text {
+  display: block !important;
+}
+
+.profile-icon {
+  font-size: 1.2em !important;
+}
+
+
+/* ------ */
+
+.flag-icon {
+  top: -0.1em;
+}

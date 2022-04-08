@@ -1,0 +1,33 @@
+.mat-ranking-top {
+  /* width: 300px; */
+}
+
+.card-ranking-top {
+  text-align: center;
+  margin: 0;
+}
+
+
+th:last-child, td:last-child {
+  text-align: right;
+}
+
+.mat-ranking-top tr  {
+  background-color: #fff;
+}
+
+tr.row-user.first {
+  background-color: gold;
+}
+
+tr.row-user.second {
+  background-color: silver;
+}
+
+tr.row-user.third {
+  background-color: #cd7f32;
+}
+
+.row-user:hover {
+  filter: brightness(85%);
+}

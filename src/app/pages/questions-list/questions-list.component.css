@@ -1,0 +1,39 @@
+.right-panel mat-card-content {
+  text-align: left;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-ranking th:not(tr th:first-child) {
+  text-align: center;
+}
+
+.question {
+  font-weight: 500;
+}
+
+.answer {
+  color: black;
+  padding: 0 16px 0 16px;
+  margin: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.question {
+  width: 250px;
+}
+
+.answer {
+  width: 130px;
+}
+
+.answer-not-disabled {
+  filter: brightness(150%);
+}
+
+.row-question:hover {
+  filter: brightness(85%);
+}

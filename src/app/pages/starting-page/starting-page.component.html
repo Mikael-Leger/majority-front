@@ -1,0 +1,21 @@
+<mat-grid-list cols="1">
+  <mat-grid-tile colspan="1" rowspan="1" class="mat-card-panel first-row-panel">
+    <mat-card class="start-card">
+      <mat-card-header>
+        <mat-card-title>Play a game of Majority!</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="indent">You will join 14 other players to play with.
+          The game will automatically start when all players joined.</p>
+        <p class="indent">
+          Answer a maximum of 10 questions!
+          When the timer ends the right answer will be determinated from the majority of answers ([A] - [B] - [C]).</p>
+        <p class="indent">
+          Good luck and ... have fun!</p>
+      </mat-card-content>
+      <mat-card-actions align="center">
+        <button mat-raised-button color="primary" (click)="start()">Start Game</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

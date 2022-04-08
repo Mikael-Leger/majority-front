@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+  <p class="dialog-title">Who do you want to be friend with?</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Friend name</mat-label>
+    <input matInput [formControl]="form.get('friendUsername')">
+    <mat-error *ngIf="form.get('friendUsername').invalid">{{getErrorMessage('friendUsername')}}</mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>Cancel</button>
+  <button mat-button (click)="addFriend()">Add</button>
+</div>

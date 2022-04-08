@@ -1,0 +1,63 @@
+<mat-grid-list cols="1">
+  <mat-grid-tile colspan="1" rowspan="2" class="mat-card-panel two-rows-panel">
+    <mat-card>
+      <mat-card-content>
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <ng-container matColumnDef="question">
+            <th mat-header-cell *matHeaderCellDef>Question</th>
+            <td mat-cell *matCellDef="let row; let idx = index;">
+              <input *ngIf="idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize) == 0" [formControl]="form.get('question_name')" class="question" [placeholder]="row.question_name">
+              <div *ngIf="idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize) != 0" class="question">{{ row.question_name }}</div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="answer1">
+            <th mat-header-cell *matHeaderCellDef>Answer 1</th>
+            <td mat-cell *matCellDef="let row; let idx = index;">
+              <input *ngIf="idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize) == 0" [formControl]="form.get('question_answer1')" class="answer" [placeholder]="row.question_answer1">
+              <div *ngIf="idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize) != 0" class="answer answer-red">{{ row.question_answer1 }}</div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="answer2">
+            <th mat-header-cell *matHeaderCellDef>Answer 2</th>
+            <td mat-cell *matCellDef="let row; let idx = index;">
+              <input *ngIf="idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize) == 0" [formControl]="form.get('question_answer2')" class="answer" [placeholder]="row.question_answer2">
+              <div *ngIf="idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize) != 0" class="answer answer-green">{{ row.question_answer2 }}</div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="answer3">
+            <th mat-header-cell *matHeaderCellDef>Answer 3</th>
+            <td mat-cell *matCellDef="let row; let idx = index;">
+              <input *ngIf="idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize) == 0" [formControl]="form.get('question_answer3')" class="answer" [placeholder]="row.question_answer3">
+              <div *ngIf="idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize) != 0" class="answer answer-blue">{{ row.question_answer3 }}</div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef>Edit</th>
+            <td mat-cell *matCellDef="let row; let idx = index;" class="edit-cell">
+              <button *ngIf="idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize) == 0" mat-icon-button color="primary" (click)="saveQuestion()"><mat-icon>save</mat-icon></button>
+              <button *ngIf="idx + (dataSource.paginator.pageIndex * dataSource.paginator.pageSize) != 0" mat-icon-button color="primary" (click)="editQuestion(row.id)"><mat-icon>edit</mat-icon></button>
+              <button mat-icon-button color="primary" (click)="deleteQuestion(row.id)"><mat-icon>delete_sweep</mat-icon></button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns; let idx = index"
+          class="row-question" (click)="setActiveQuestion(row, idx)"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data.</td>
+          </tr>
+        </table>
+      <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of questions"></mat-paginator>
+    </mat-card-content>
+    <mat-card-actions align="center">
+      <button mat-button mat-raised-button color="primary" (click)="addQuestion()">Add question</button>
+    </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

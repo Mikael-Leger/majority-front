@@ -1,0 +1,11 @@
+
+<div class="spinner" [class]="'spinner-'+size">
+  <span class="spinner-level">{{ user.level }}</span>
+  <mat-progress-spinner
+    [color]="color"
+    [mode]="mode"
+    [diameter]="diameter"
+    [value]="getValue(user)">
+    </mat-progress-spinner>
+
+</div>

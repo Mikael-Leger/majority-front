@@ -1,0 +1,127 @@
+<div *ngIf="show">
+  <mat-expansion-panel [expanded]="friendsListExpanded" hideToggle class="friends-list-container">
+    <mat-expansion-panel-header (click)="expansionFriendsList()">
+      <mat-panel-title class="friends-list-title">
+        <mat-icon class="mat-icon-friends-notifications" *ngIf="invitationsList.length > 0" matBadge="{{(invitationsList.length > 9) ? '9+' : invitationsList.length }}" matBadgeSize="small" matBadgeColor="warn">supervised_user_circle</mat-icon>
+        <mat-icon class="mat-icon-friends-notifications" *ngIf="invitationsList.length == 0">supervised_user_circle</mat-icon>
+        <span>Friends list</span>
+      </mat-panel-title>
+      <mat-panel-description class="friends-list-description">
+        <span>[{{ friendsConnected }} {{ friendsConnected > 1 ? 'friends' : 'friend' }} connected]</span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="friends-and-invitations-content">
+      <mat-expansion-panel [expanded]="friendsListOpenState" hideToggle
+      (opened)="friendsListOpenState = true; invitationListOpenState = false" (closed)="friendsListOpenState = false">
+        <mat-expansion-panel-header>
+          <span>Friends</span>
+        </mat-expansion-panel-header>
+        <div class="friends-list-content" #scrollMe>
+          <mat-selection-list #friends [multiple]="false">
+            <mat-list-option *ngFor="let friend of friendsList" [value]="friend" class="option-friend" (click)="addMessageBox(friend, true)">
+              <button mat-icon-button routerLink="/profile/{{friend.username}}">
+                <mat-icon>perm_identity</mat-icon>
+              </button>
+              <span
+              class="connected-status"
+              [ngStyle]="{'color': friend.status == 'connected' ? 'rgb(13, 107, 13)' : friend.status == 'away' ? 'rgb(204, 162, 48)' : 'rgb(143, 22, 22)'}">
+                <mat-icon>brightness_1</mat-icon>
+                {{ friend.username }}
+              </span>
+              <hr>
+            </mat-list-option>
+            <mat-list-item *ngIf="friendsList.length == 0">
+              <span>No friends yet.</span>
+            </mat-list-item>
+          </mat-selection-list>
+        </div>
+      </mat-expansion-panel>
+
+      <hr *ngIf="invitations.length != 0">
+
+      <mat-expansion-panel [expanded]="invitationListOpenState" hideToggle
+      (opened)="invitationListOpenState = true; friendsListOpenState = false" (closed)="invitationListOpenState = false">
+        <mat-expansion-panel-header>
+          <span>Invitations
+            <span class="mat-icon-notifications" *ngIf="invitationsList.length > 0"
+              matBadge="{{(invitationsList.length > 9) ? '9+' : invitationsList.length }}"
+              matBadgeSize="small" matBadgeColor="warn"></span>
+          </span>
+        </mat-expansion-panel-header>
+        <div class="invitations-list-content" #scrollMe>
+          <mat-selection-list #invitations [multiple]="false">
+            <mat-list-option *ngFor="let invitation of invitationsList"
+              [value]="invitation"
+              (click)="addMessageBox(invitation, true)"
+              class="connected-status"
+              [ngStyle]="{'color': invitation.status == 'connected' ? 'rgb(13, 107, 13)' : invitation.status == 'away' ? 'rgb(204, 162, 48)' : 'rgb(143, 22, 22)'}">
+              <span>
+                <mat-icon>brightness_1</mat-icon>
+                {{ invitation.username }}
+              </span>
+              <hr>
+            </mat-list-option>
+            <mat-list-item *ngIf="invitationsList.length == 0">
+              <span>No invitations pending.</span>
+            </mat-list-item>
+          </mat-selection-list>
+        </div>
+      </mat-expansion-panel>
+    </div>
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="addFriend()"><mat-icon>person_add</mat-icon></button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel *ngFor="let messageBox of messageBoxesList; let idx = index;" [ngStyle]="{'left': 310 * (idx + 1) + 'px'}"
+    [expanded]="messageBox.expanded" (opened)="true" hideToggle class="message-container">
+    <mat-expansion-panel-header (click)="expansionMessageBox(messageBox)">
+      <mat-panel-title class="message-title">
+        <mat-icon>message</mat-icon>
+        <span>{{ messageBox.username }}</span>
+      </mat-panel-title>
+      <mat-panel-description
+        class="message-description"
+        [ngStyle]="{'color': messageBox.status == 'connected' ? 'rgb(13, 107, 13)' : messageBox.status == 'away' ? 'rgb(204, 162, 48)' : 'rgb(143, 22, 22)'}">
+        <span>
+          <mat-icon>brightness_1</mat-icon>
+          <span>{{ messageBox.status }}</span>
+        </span>
+      </mat-panel-description>
+      <mat-icon (click)="closeMessage(messageBox, idx)">cancel</mat-icon>
+    </mat-expansion-panel-header>
+
+    <hr>
+
+    <div class="message-content" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+      <div *ngFor="let message of messageBox.messages" class="message-item"
+      [ngClass]="{'left-message': message.sender == messageBox.username, 'right-message': message.sender != messageBox.username}">
+        <div>
+          <!-- <span class="message-username">{{ message.sender }}</span> -->
+          <span class="message-time">{{ formatDate(message.time) }}</span>
+        </div>
+        <span class="message-text">{{ message.text }}</span>
+        <span class="message-you" *ngIf="message.sender != messageBox.username">You</span>
+        <div *ngIf="message.invitation == 'friend' && message.sender == messageBox.username" class="message-invitation-answer">
+          <button mat-button color="primary" (click)="answerInvitation(true, messageBox, idx)">Accept</button>
+          <button mat-button color="primary" (click)="answerInvitation(false, messageBox, idx)">Decline</button>
+        </div>
+        <div *ngIf="message.invitation == 'game' && message.gameId && message.sender == messageBox.username" class="message-invitation-answer">
+          <button mat-button color="primary" (click)="joinGame(message.gameId, messageBox)">Join game</button>
+        </div>
+      </div>
+      <button mat-stroked-button color="primary" *ngIf="game" (click)="inviteToGame(messageBox, game)">Invite {{ messageBox.username }} to your game</button>
+      <mat-error *ngIf="messageFormGroup.get(messageBox.id.toString()).invalid">{{messageFormGroup.get(messageBox.id.toString()).getError('validator')}}</mat-error>
+    </div>
+
+    <mat-action-row>
+      <form>
+        <input mat-input placeholder="Send a message here" maxlength="255" [formControl]="messageFormGroup.get(messageBox.id.toString())" class="input-message">
+        <button mat-button color="primary" type="submit" class="button-message" (click)="sendMessage(messageBox)"><mat-icon>arrow_forward</mat-icon></button>
+      </form>
+    </mat-action-row>
+  </mat-expansion-panel>
+</div>
+

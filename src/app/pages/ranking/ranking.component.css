@@ -1,0 +1,39 @@
+table {
+  width: 100%;
+}
+
+td, th {
+  width: 30%;
+}
+
+th:last-child, td:last-child {
+  text-align: right;
+  width: 10%;
+}
+
+tr:nth-child(even) {
+  background: #F2F2F2;
+}
+
+tr.first {
+  background-color: gold;
+}
+
+tr.second {
+  background-color: silver;
+}
+
+tr.third {
+  background-color: #cd7f32;
+}
+
+tr.row-user:hover {
+  filter: brightness(85%);
+}
+
+tr.selected td > span {
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid black;
+}

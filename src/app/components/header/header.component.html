@@ -1,0 +1,28 @@
+<p>
+  <mat-toolbar color="primary" class="mat-header">
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button> -->
+    <span class="menu-spacer" routerLink="/home">
+      <span class="title">Majority</span>
+    </span>
+    <span *ngFor="let menuItem of menuItems">
+      <span *ngIf="menuItem.showIf" class="item-spacer" [routerLink]="menuItem.link" [ngClass]="{'selected': menuItem.selected}">
+        <span class="item-menu">{{ menuItem.label }}</span>
+      </span>
+    </span>
+    <span class="log-spacer"></span>
+    <span ngbDropdown placement="bottom-right" class="d-inline-block menu-dropdown" display="dynamic">
+      <button mat-icon-button class="profile-item" ngbDropdownToggle>
+        <mat-icon>perm_identity</mat-icon> {{ username }}
+      </button>
+      <span ngbDropdownMenu aria-labelledby="dropdownBasic2">
+        <span *ngFor="let dropdownItem of dropdownItems; let idx = index;">
+          <button mat-button color="primary" *ngIf="dropdownItem.showIf" ngbDropdownItem [routerLink]="(dropdownItem.routerLink) ? dropdownItem.link : ''"
+            (click)="(!dropdownItem.routerLink) ? logout() : ''">{{ dropdownItem.label }}
+          </button>
+        </span>
+      </span>
+    </span>
+  </mat-toolbar>
+</p>

@@ -1,0 +1,13 @@
+.dialog-title {
+  font-size: 1.3em;
+  font-weight: bolder;
+}
+
+.dialog-question-title {
+  text-decoration: underline;
+}
+
+.dialog-question-content {
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,36 @@
+<mat-grid-list cols="1">
+  <mat-grid-tile colspan="1" rowspan="2" class="mat-card-panel two-rows-panel">
+    <mat-card class="small-card">
+      <mat-card-content>
+        <form class="form question">
+          <div>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter the question</mat-label>
+              <input matInput placeholder="question_name" [formControl]="form.get('question_name')" required>
+              <mat-error *ngIf="form.get('question_name').invalid">{{getErrorMessage('question_name')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter first answer</mat-label>
+              <input matInput placeholder="question_answer1" [formControl]="form.get('question_answer1')" required>
+              <mat-error *ngIf="form.get('question_answer1').invalid">{{getErrorMessage('question_answer1')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter second answer</mat-label>
+              <input matInput placeholder="question_answer2" [formControl]="form.get('question_answer2')" required>
+              <mat-error *ngIf="form.get('question_answer2').invalid">{{getErrorMessage('question_answer2')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter third answer</mat-label>
+              <input matInput placeholder="question_answer3" [formControl]="form.get('question_answer3')" required>
+              <mat-error *ngIf="form.get('question_answer3').invalid">{{getErrorMessage('question_answer3')}}</mat-error>
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-card-actions align="center">
+        <app-back-button></app-back-button>
+        <button mat-raised-button color="primary" type="submit" (click)="saveQuestion()">Save</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

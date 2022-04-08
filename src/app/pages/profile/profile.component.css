@@ -1,0 +1,17 @@
+.profile-card {
+  text-align: left;
+}
+
+.profile-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.description {
+  text-decoration: underline;
+  margin-bottom: 1em;
+}

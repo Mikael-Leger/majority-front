@@ -1,0 +1,8 @@
+<div mat-dialog-content>
+  <p class="dialog-title">Are you sure you want to remove this friend?</p>
+  <div class="dialog-username-content">{{ data.username }}</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>No</button>
+  <button mat-button (click)="sure()">Yes, I am sure</button>
+</div>
