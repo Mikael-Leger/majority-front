@@ -33,6 +33,10 @@ export class AuthService {
     return this.httpClient.post(`${this.AUTH_SERVER}/signin`, user).pipe(
 
       tap((res: JwtResponseLogin) => {
+        console.log("login");
+        console.log(res);
+
+
         localStorage.setItem('ID', res.id.toString());
         localStorage.setItem('ACCESS_TOKEN', res.accessToken);
         if (res.roles.includes('ROLE_MODERATOR')) localStorage.setItem('ROLE', 'moderator');
