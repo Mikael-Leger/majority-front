@@ -43,9 +43,6 @@ export class AuthService {
         this.roles.next(res.roles);
         this.friendsService.showFriendsList.next(true);
         this.userService.setStatus('connected').subscribe(res => {
-          const id = localStorage.getItem('ID');
-          console.log("test : %s", id);
-
           // window.location.reload();
 
         });

@@ -48,13 +48,23 @@ export class FriendsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("nginit fl");
+    const id = localStorage.getItem('ID');
+    const token = localStorage.getItem('ACCESS_TOKEN');
+    console.log("test : %s - %s", id, token);
+
+
     if (this.authService.isAuthenticated()) {
+      console.log("auth");
+
       this.show = true;
       this.friendsListExpanded = localStorage.getItem('friendsListExpanded') == 'true';
       this.getLists();
 
 
     } else {
+      console.log("not auth");
+
       this.show = false;
 
     }
