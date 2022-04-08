@@ -33,17 +33,29 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("nginit header");
+    const id = localStorage.getItem('ID');
+    const token = localStorage.getItem('ACCESS_TOKEN');
+    console.log("test : %s - %s", id, token);
     if (!this.authService.isAuthenticated()) {
+      console.log("not auth");
+
       this.username = 'Not connected';
       this.roles = ['VISITOR'];
 
     }
+    console.log("auth");
     this.setMenuItems();
 
   }
 
   setMenuItems(): void {
+    console.log("setMenuItems");
+
     this.authService.roles.subscribe(value => {
+      console.log("value :");
+      console.log(value);
+
       this.roles = value;
       this.menuItems = [
         {
