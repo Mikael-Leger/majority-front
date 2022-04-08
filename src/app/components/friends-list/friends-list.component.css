@@ -1,7 +1,7 @@
 .friends-list-container, .message-container {
   width: 300px;
   bottom: 0;
-  opacity: 91%;
+  opacity: 0.9;
   position: fixed;
 }
 
