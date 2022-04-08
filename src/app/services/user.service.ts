@@ -11,7 +11,7 @@ import { User } from '../interfaces/user';
   providedIn: 'root'
 })
 export class UserService {
-  USER_SERVER = 'http://localhost:8080/api/user';
+  USER_SERVER = 'https://majority-back.herokuapp.com/api/user';
 
   constructor(private httpClient: HttpClient) { }
 

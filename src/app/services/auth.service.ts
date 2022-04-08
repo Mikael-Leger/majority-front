@@ -15,7 +15,7 @@ import { FriendsService } from './friends.service';
   providedIn: 'root'
 })
 export class AuthService {
-  AUTH_SERVER = 'http://localhost:8080/api/auth';
+  AUTH_SERVER = 'https://majority-back.herokuapp.com/api/auth';
   authSubject = new BehaviorSubject(false);
   username: BehaviorSubject<string> = new BehaviorSubject<string>('');
   roles: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);

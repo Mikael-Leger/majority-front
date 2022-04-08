@@ -7,13 +7,13 @@ import { tap } from 'rxjs/operators';
 import { Player } from '../interfaces/player';
 import { Question } from '../interfaces/question';
 
-const baseUrl = 'http://localhost:8080/api/questions';
+const baseUrl = 'https://majority-back.herokuapp.com/api/questions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-  GAME_SERVER = 'http://localhost:8080/api/game';
+  GAME_SERVER = 'https://majority-back.herokuapp.com/api/game';
 
   inGame: BehaviorSubject<string> = new BehaviorSubject<string>("");
 

@@ -11,7 +11,7 @@ import { User } from '../interfaces/user';
   providedIn: 'root'
 })
 export class FriendsService {
-  FRIEND_SERVER = 'http://localhost:8080/api/friendship';
+  FRIEND_SERVER = 'https://majority-back.herokuapp.com/api/friendship';
 
   showFriendsList: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
